@@ -36,3 +36,17 @@ void AlchemyWorkshop::displayAllRecipes() const {
     }
     std::cout << "---------------------------\n";
 }
+
+// 특정 물약의 레시피 검색 메서드
+PotionRecipe AlchemyWorkshop::searchRecipeByName(const std::string& name) const
+{
+    
+    return recipes[0];
+}
+
+// 특정 재료의 모든 물약 레시피 검색 메서드
+std::vector<PotionRecipe> AlchemyWorkshop::searchRecipeByIngredient(const std::string& ingredient) const
+{
+    
+    return recipes;
+}

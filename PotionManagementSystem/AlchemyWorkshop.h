@@ -14,6 +14,11 @@ public:
     // 모든 레시피 출력 메서드
     void displayAllRecipes() const;
 
+    // searchRecipeByName 메서드: 물약 이름(string)을 매개변수로 받아 레시피 검색하는 기능 추가
+    PotionRecipe searchRecipeByName(const std::string& name) const;
+
+    // searchRecipeByIngredient 메서드: 재료(string)를 매개변수로 받아 레시피 검색하는 기능 추가
+    std::vector<PotionRecipe> searchRecipeByIngredient(const std::string& ingredient) const;
 
 private:
     std::vector<PotionRecipe> recipes;
