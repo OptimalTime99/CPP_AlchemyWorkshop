@@ -42,10 +42,17 @@ void AlchemyWorkshop::displayAllRecipes() const {
 // 특정 물약의 레시피 검색 메서드
 PotionRecipe AlchemyWorkshop::searchRecipeByName(const std::string& name) const
 {
-    
+    auto it = recipeMap.find(name);
 
-
-    return recipes[0];
+    if (it != recipeMap.end())
+    {
+        PotionRecipe recipe(it->first, it->second);
+        return recipe;
+    } 
+    else 
+    {
+        std::cout << "검색어: [" << name << "]에 해당되는 레시피가 없습니다.\n";
+    }
 }
 
 // 특정 재료의 모든 물약 레시피 검색 메서드

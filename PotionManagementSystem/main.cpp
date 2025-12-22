@@ -10,10 +10,11 @@ int main() {
     AlchemyWorkshop myWorkshop;
 
     while (true) {
-        std::cout << "⚗️ 연금술 공방 관리 시스템" << std::endl;
-        std::cout << "1. 레시피 추가" << std::endl;
-        std::cout << "2. 모든 레시피 출력" << std::endl;
-        std::cout << "3. 종료" << std::endl;
+        std::cout << "⚗️ 연금술 공방 관리 시스템"      << std::endl;
+        std::cout << "1. 레시피 추가"                 << std::endl;
+        std::cout << "2. 모든 레시피 출력"             << std::endl;
+        std::cout << "3. 특정 레시피명 검색"           << std::endl;
+        std::cout << "4. 종료"                       << std::endl;
         std::cout << "선택: ";
 
         int choice;
@@ -57,11 +58,31 @@ int main() {
             }
 
         }
+
+        // 모든 레시피 출력
         else if (choice == 2) {
             myWorkshop.displayAllRecipes();
 
         }
+
+        // 특정 레시피명 검색
         else if (choice == 3) {
+            std::string name;
+            std::cout << "특정 레시피명 검색: ";
+            std::cin.ignore(10000, '\n');
+            std::getline(std::cin, name);
+
+            PotionRecipe recipe = myWorkshop.searchRecipeByName(name);
+
+            std::cout << "레시피명: " << recipe.GetPotionName() << "\n";
+
+            for (size_t t = 0; t < recipe.GetIngredients().size(); ++t)
+            {
+                std::cout << "재료 " << t + 1 << ": " << recipe.GetIngredients()[t] << "\n";
+            }
+        }
+
+        else if (choice == 4) {
             std::cout << "공방 문을 닫습니다..." << std::endl;
             break;
 
