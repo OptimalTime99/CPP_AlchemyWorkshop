@@ -25,4 +25,6 @@ private:
     std::vector<PotionRecipe> recipes;
 
     std::map <std::string, std::vector<std::string>> recipeMap;
+
+    std::map <std::string, std::vector<std::string>> ingredientMap;
 };

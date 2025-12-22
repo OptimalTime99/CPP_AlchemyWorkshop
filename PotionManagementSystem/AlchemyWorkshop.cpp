@@ -11,6 +11,12 @@ void AlchemyWorkshop::addRecipe(const std::string& name, const std::vector<std::
     recipes.push_back(PotionRecipe(name, ingredients));
     recipeMap[name] = ingredients;
 
+    // 재료별로 레시피명을 인덱싱
+    for (const auto& ing : ingredients)
+    {
+        ingredientMap[ing].push_back(name);
+    }
+
     std::cout << ">> 새로운 레시피 '" << name << "'이(가) 추가되었습니다." << std::endl;
 }
 
@@ -53,11 +59,30 @@ PotionRecipe AlchemyWorkshop::searchRecipeByName(const std::string& name) const
     {
         std::cout << "검색어: [" << name << "]에 해당되는 레시피가 없습니다.\n";
     }
+
+    return PotionRecipe("", {}); // 빈 레시피 반환
 }
 
 // 특정 재료의 모든 물약 레시피 검색 메서드
 std::vector<PotionRecipe> AlchemyWorkshop::searchRecipeByIngredient(const std::string& ingredient) const
 {
-    
+    std::vector<PotionRecipe> recipes;
+
+    auto it = ingredientMap.find(ingredient);
+    if (it == ingredientMap.end())
+    {
+        std::cout << "검색어: [" << ingredient << "] 재료가 들어간 레시피가 없습니다.\n";
+        return recipes;
+    }
+
+    for (const auto& name : it->second)
+    {
+        auto recipe = recipeMap.find(name);
+        if (recipe != recipeMap.end())
+        {
+            recipes.emplace_back(recipe->first, recipe->second);
+        }
+    }
+
     return recipes;
 }

@@ -14,7 +14,8 @@ int main() {
         std::cout << "1. 레시피 추가"                 << std::endl;
         std::cout << "2. 모든 레시피 출력"             << std::endl;
         std::cout << "3. 특정 레시피명 검색"           << std::endl;
-        std::cout << "4. 종료"                       << std::endl;
+        std::cout << "4. 특정 재료로 레시피 검색"       << std::endl;
+        std::cout << "5. 종료"                       << std::endl;
         std::cout << "선택: ";
 
         int choice;
@@ -74,15 +75,40 @@ int main() {
 
             PotionRecipe recipe = myWorkshop.searchRecipeByName(name);
 
-            std::cout << "레시피명: " << recipe.GetPotionName() << "\n";
+            std::cout << "레시피명: [" << recipe.GetPotionName() << "], 재료: ";
 
             for (size_t t = 0; t < recipe.GetIngredients().size(); ++t)
             {
-                std::cout << "재료 " << t + 1 << ": " << recipe.GetIngredients()[t] << "\n";
+                std::cout << "[" << recipe.GetIngredients()[t] << "] ";
+            }
+
+            std::cout << "\n";
+        }
+
+        // 특정 재료로 레시피명 검색
+        else if (choice == 4)
+        {
+            std::string ingredient;
+            std::cout << "특정 재료로 레시피 검색: ";
+            std::cin.ignore(10000, '\n');
+            std::getline(std::cin, ingredient);
+
+            std::vector<PotionRecipe> recipes = myWorkshop.searchRecipeByIngredient(ingredient);
+
+            for (int i = 0; i < recipes.size(); ++i)
+            {
+                std::cout << "레시피명: [" << recipes[i].GetPotionName() << "] 재료: ";
+
+                for (int j = 0; j < recipes[i].GetIngredients().size(); ++j)
+                {
+                    std::cout << "[" << recipes[i].GetIngredients()[j] << "] ";
+                }
+
+                std::cout << "\n";
             }
         }
 
-        else if (choice == 4) {
+        else if (choice == 5) {
             std::cout << "공방 문을 닫습니다..." << std::endl;
             break;
 
