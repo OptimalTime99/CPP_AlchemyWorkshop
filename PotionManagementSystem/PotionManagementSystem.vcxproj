@@ -123,10 +123,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="AlchemyWorkshop.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="PotionRecipe.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AlchemyWorkshop.h" />
     <ClInclude Include="PotionRecipe.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
