@@ -9,6 +9,8 @@
 // addRecipe 메서드: 재료 목록(vector)을 매개변수로 받도록 수정
 void AlchemyWorkshop::addRecipe(const std::string& name, const std::vector<std::string>& ingredients) {
     recipes.push_back(PotionRecipe(name, ingredients));
+    recipeMap[name] = ingredients;
+
     std::cout << ">> 새로운 레시피 '" << name << "'이(가) 추가되었습니다." << std::endl;
 }
 
@@ -41,6 +43,8 @@ void AlchemyWorkshop::displayAllRecipes() const {
 PotionRecipe AlchemyWorkshop::searchRecipeByName(const std::string& name) const
 {
     
+
+
     return recipes[0];
 }
 

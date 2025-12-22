@@ -1,6 +1,7 @@
 ﻿// AlchemyWorkshop.h
 
 #pragma once
+#include <map>
 #include <string>
 #include <vector>
 #include "PotionRecipe.h"
@@ -22,4 +23,6 @@ public:
 
 private:
     std::vector<PotionRecipe> recipes;
+
+    std::map <std::string, std::vector<std::string>> recipeMap;
 };
