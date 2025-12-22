@@ -1,18 +1,7 @@
 ﻿#include <iostream>
 #include <vector>
 #include <string>
-
-// PotionRecipe 클래스: 재료 목록을 vector<string>으로 변경
-class PotionRecipe {
-public:
-    std::string potionName;
-    std::vector<std::string> ingredients; // 단일 재료에서 재료 '목록'으로 변경
-
-    // 생성자: 재료 목록을 받아 초기화하도록 수정
-    PotionRecipe(const std::string& name, const std::vector<std::string>& ingredients)
-        : potionName(name), ingredients(ingredients) {
-    }
-};
+#include "PotionRecipe.h"
 
 // AlchemyWorkshop 클래스: 레시피 목록을 관리
 class AlchemyWorkshop {
@@ -35,14 +24,14 @@ public:
 
         std::cout << "\n--- [ 전체 레시피 목록 ] ---" << std::endl;
         for (size_t i = 0; i < recipes.size(); ++i) {
-            std::cout << "- 물약 이름: " << recipes[i].potionName << std::endl;
+            std::cout << "- 물약 이름: " << recipes[i].GetPotionName() << std::endl;
             std::cout << "  > 필요 재료: ";
 
             // 재료 목록을 순회하며 출력
-            for (size_t j = 0; j < recipes[i].ingredients.size(); ++j) {
-                std::cout << recipes[i].ingredients[j];
+            for (size_t j = 0; j < recipes[i].GetIngredients().size(); ++j) {
+                std::cout << recipes[i].GetIngredients()[j];
                 // 마지막 재료가 아니면 쉼표로 구분
-                if (j < recipes[i].ingredients.size() - 1) {
+                if (j < recipes[i].GetIngredients().size() - 1) {
                     std::cout << ", ";
                 }
             }
