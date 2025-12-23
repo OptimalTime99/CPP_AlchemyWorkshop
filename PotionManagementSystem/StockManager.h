@@ -10,16 +10,16 @@ public:
     static constexpr int MAX_STOCK = 3;
     
     // 초기 재고 3개 추가 메서드 선언
-    void initializeStock(const std::string& potionName);
+    void InitializeStock(const std::string& potionName);
 
     // 특정 물약의 현재 재고 수량 반환 메서드 선언
-    int getStock(const std::string& potionName) const;
+    int GetStock(const std::string& potionName) const;
 
     // 재고가 1개 이상인 경우 모험가에게 물약 지급 메서드 선언
-    bool dispensePotion(const std::string& potionName);
+    bool DispensePotion(const std::string& potionName);
 
     // 모험가에게 지급한 물약의 공병 반환 받는 메서드 선언
-    void returnPotion(const std::string& potionName);
+    void ReturnPotion(const std::string& potionName);
 
 
 

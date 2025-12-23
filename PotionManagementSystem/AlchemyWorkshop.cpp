@@ -8,7 +8,7 @@
 #include "PotionRecipe.h"
 
 // addRecipe 메서드: 재료 목록(vector)을 매개변수로 받도록 수정
-void AlchemyWorkshop::addRecipe(const std::string& name, const std::vector<std::string>& ingredients) {
+void AlchemyWorkshop::AddRecipe(const std::string& name, const std::vector<std::string>& ingredients) {
     recipes.push_back(PotionRecipe(name, ingredients));
     recipeMap[name] = ingredients;
 
@@ -19,13 +19,13 @@ void AlchemyWorkshop::addRecipe(const std::string& name, const std::vector<std::
     }
 
     // 초기 재고 3개 추가
-    stockManager.initializeStock(name);
+    stockManager.InitializeStock(name);
 
     std::cout << ">> 새로운 레시피 '" << name << "'이(가) 추가되었습니다." << std::endl;
 }
 
 // 모든 레시피 출력 메서드
-void AlchemyWorkshop::displayAllRecipes() const {
+void AlchemyWorkshop::DisplayAllRecipes() const {
     if (recipes.empty()) {
         std::cout << "아직 등록된 레시피가 없습니다." << std::endl;
         return;
@@ -33,7 +33,7 @@ void AlchemyWorkshop::displayAllRecipes() const {
 
     std::cout << "\n--- [ 전체 레시피 목록 ] ---" << std::endl;
     for (size_t i = 0; i < recipes.size(); ++i) {
-        std::cout << "- 레시피명/수량 [" << recipes[i].GetPotionName() << "/" << stockManager.getStock(recipes[i].GetPotionName()) << "]\n";
+        std::cout << "- 레시피명/수량 [" << recipes[i].GetPotionName() << "/" << stockManager.GetStock(recipes[i].GetPotionName()) << "]\n";
         std::cout << "  > 필요 재료: ";
 
         // 재료 목록을 순회하며 출력
@@ -50,7 +50,7 @@ void AlchemyWorkshop::displayAllRecipes() const {
 }
 
 // 특정 물약의 레시피 검색 메서드
-PotionRecipe AlchemyWorkshop::searchRecipeByName(const std::string& name)
+PotionRecipe AlchemyWorkshop::SearchRecipeByName(const std::string& name)
 {
     auto it = recipeMap.find(name);
 
@@ -69,7 +69,7 @@ PotionRecipe AlchemyWorkshop::searchRecipeByName(const std::string& name)
 }
 
 // 특정 재료의 모든 물약 레시피 검색 메서드
-std::vector<PotionRecipe> AlchemyWorkshop::searchRecipeByIngredient(const std::string& ingredient) const
+std::vector<PotionRecipe> AlchemyWorkshop::SearchRecipeByIngredient(const std::string& ingredient) const
 {
     std::vector<PotionRecipe> recipes;
 
@@ -94,18 +94,18 @@ std::vector<PotionRecipe> AlchemyWorkshop::searchRecipeByIngredient(const std::s
 
 
 // 특정 물약의 현재 재고 수량 반환 메서드
-int AlchemyWorkshop::getPotionStock(const std::string& potionName)
+int AlchemyWorkshop::GetPotionStock(const std::string& potionName)
 {
-    return stockManager.getStock(potionName);
+    return stockManager.GetStock(potionName);
 }
 
-bool AlchemyWorkshop::dispensePotion(const std::string& potionName)
+bool AlchemyWorkshop::DispensePotion(const std::string& potionName)
 {
-    return stockManager.dispensePotion(potionName);
+    return stockManager.DispensePotion(potionName);
 }
 
 // 모험가에게 지급한 물약의 공병 반환 메서드
-void AlchemyWorkshop::returnPotionBottle(const std::string& potionName)
+void AlchemyWorkshop::ReturnPotionBottle(const std::string& potionName)
 {
-    stockManager.returnPotion(potionName);
+    stockManager.ReturnPotion(potionName);
 }

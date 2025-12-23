@@ -56,7 +56,7 @@ int main() {
 
             // 입력받은 재료가 하나 이상 있을 때만 레시피 추가
             if (!ingredients_input.empty()) {
-                myWorkshop.addRecipe(name, ingredients_input);
+                myWorkshop.AddRecipe(name, ingredients_input);
             }
             else {
                 std::cout << ">> 재료가 입력되지 않아 레시피 추가를 취소합니다." << std::endl;
@@ -66,7 +66,7 @@ int main() {
 
         // 모든 레시피 출력
         else if (choice == 2) {
-            myWorkshop.displayAllRecipes();
+            myWorkshop.DisplayAllRecipes();
 
         }
 
@@ -77,8 +77,8 @@ int main() {
             std::cin.ignore(10000, '\n');
             std::getline(std::cin, name);
 
-            PotionRecipe recipe = myWorkshop.searchRecipeByName(name);
-            int count = myWorkshop.getPotionStock(name);
+            PotionRecipe recipe = myWorkshop.SearchRecipeByName(name);
+            int count = myWorkshop.GetPotionStock(name);
 
             std::cout << "- 레시피명/수량: [" << recipe.GetPotionName() << "/" << count << "]\n  > 필요 재료: ";
 
@@ -98,7 +98,7 @@ int main() {
             std::cin.ignore(10000, '\n');
             std::getline(std::cin, ingredient);
 
-            std::vector<PotionRecipe> recipes = myWorkshop.searchRecipeByIngredient(ingredient);
+            std::vector<PotionRecipe> recipes = myWorkshop.SearchRecipeByIngredient(ingredient);
 
             for (int i = 0; i < recipes.size(); ++i)
             {
@@ -121,7 +121,7 @@ int main() {
             std::cin.ignore(10000, '\n');
             std::getline(std::cin, name);
 
-            if (myWorkshop.dispensePotion(name))
+            if (myWorkshop.DispensePotion(name))
             {
                 std::cout << "[" << name << "] 물약을 1개 지급했습니다.\n";
             }
@@ -140,7 +140,7 @@ int main() {
             std::cin.ignore(10000, '\n');
             std::getline(std::cin, name);
 
-            myWorkshop.returnPotionBottle(name);
+            myWorkshop.ReturnPotionBottle(name);
 
             std::cout << "[" << name << "] 물약의 공병을 반환받았습니다.\n";
         }

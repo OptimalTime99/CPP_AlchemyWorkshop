@@ -2,13 +2,13 @@
 #include "StockManager.h"
 
 // 초기 재고 3개 추가 메서드 정의
-void StockManager::initializeStock(const std::string& potionName)
+void StockManager::InitializeStock(const std::string& potionName)
 {
     potionStock[potionName] = 3;
 }
 
 // 특정 물약의 현재 재고 수량 반환 메서드 정의
-int StockManager::getStock(const std::string& potionName) const
+int StockManager::GetStock(const std::string& potionName) const
 {
     auto it = potionStock.find(potionName);
 
@@ -16,7 +16,7 @@ int StockManager::getStock(const std::string& potionName) const
 }
 
 // 재고가 1개 이상인 경우 모험가에게 물약 지급 메서드 정의
-bool StockManager::dispensePotion(const std::string& potionName)
+bool StockManager::DispensePotion(const std::string& potionName)
 {
     if (potionStock[potionName] > 0)
     {
@@ -28,7 +28,7 @@ bool StockManager::dispensePotion(const std::string& potionName)
 }
 
 // 모험가에게 지급한 물약의 공병 반환 받는 메서드 정의
-void StockManager::returnPotion(const std::string& potionName)
+void StockManager::ReturnPotion(const std::string& potionName)
 {
     if (potionStock[potionName] < MAX_STOCK)
     {
