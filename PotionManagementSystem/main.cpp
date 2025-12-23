@@ -4,18 +4,22 @@
 #include <vector>
 #include <string>
 #include "AlchemyWorkshop.h"
+#include "StockManager.h"
 #include "PotionRecipe.h"
+
 
 int main() {
     AlchemyWorkshop myWorkshop;
 
     while (true) {
-        std::cout << "⚗️ 연금술 공방 관리 시스템"      << std::endl;
-        std::cout << "1. 레시피 추가"                 << std::endl;
-        std::cout << "2. 모든 레시피 출력"             << std::endl;
-        std::cout << "3. 특정 레시피명 검색"           << std::endl;
-        std::cout << "4. 특정 재료로 레시피 검색"       << std::endl;
-        std::cout << "5. 종료"                       << std::endl;
+        std::cout << "⚗️ 연금술 공방 관리 시스템"               << std::endl;
+        std::cout << "1. 레시피 추가"                          << std::endl;
+        std::cout << "2. 모든 레시피 출력"                      << std::endl;
+        std::cout << "3. 특정 레시피명 검색"                    << std::endl;
+        std::cout << "4. 특정 재료로 레시피 검색"                << std::endl;
+        std::cout << "5. 모험가에게 포션 1개 지급"               << std::endl;
+        std::cout << "6. 모험가에게 지급한 물약의 공병 반환 받기"  << std::endl;
+        std::cout << "7. 종료"                                 << std::endl;
         std::cout << "선택: ";
 
         int choice;
@@ -74,8 +78,9 @@ int main() {
             std::getline(std::cin, name);
 
             PotionRecipe recipe = myWorkshop.searchRecipeByName(name);
+            int count = myWorkshop.getPotionStock(name);
 
-            std::cout << "레시피명: [" << recipe.GetPotionName() << "], 재료: ";
+            std::cout << "- 레시피명/수량: [" << recipe.GetPotionName() << "/" << count << "]\n  > 필요 재료: ";
 
             for (size_t t = 0; t < recipe.GetIngredients().size(); ++t)
             {
@@ -108,7 +113,40 @@ int main() {
             }
         }
 
-        else if (choice == 5) {
+        // 모험가에게 포션 1개 지급
+        else if (choice == 5)
+        {
+            std::string name;
+            std::cout << "지급 물약 입력: ";
+            std::cin.ignore(10000, '\n');
+            std::getline(std::cin, name);
+
+            if (myWorkshop.dispensePotion(name))
+            {
+                std::cout << "[" << name << "] 물약을 1개 지급했습니다.\n";
+            }
+            else {
+                std::cout << "[" << name << "]는 현재 재고가 없는 물약입니다.\n";
+            }
+
+            
+        }
+
+        // 모험가에게 지급한 물약의 공병 반환 받기
+        else if (choice == 6)
+        {
+            std::string name;
+            std::cout << "반환 물약 공병 입력: ";
+            std::cin.ignore(10000, '\n');
+            std::getline(std::cin, name);
+
+            myWorkshop.returnPotionBottle(name);
+
+            std::cout << "[" << name << "] 물약의 공병을 반환받았습니다.\n";
+        }
+
+        else if (choice == 7)
+        {
             std::cout << "공방 문을 닫습니다..." << std::endl;
             break;
 
